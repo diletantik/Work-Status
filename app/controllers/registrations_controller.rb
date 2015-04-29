@@ -19,8 +19,12 @@ class RegistrationsController < DeviseTokenAuth::RegistrationsController
               token: BCrypt::Password.create(@token),
               expiry: (Time.now + DeviseTokenAuth.token_lifespan).to_i
             }
-
-            @resource.save!
+        
+          if @resource.save!
+            render json: 'succesfully registered'
+          else
+            render json: @resource.errors.full_messages
+          end
     end
 
   protected
