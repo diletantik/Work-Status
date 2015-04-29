@@ -22,11 +22,12 @@ class RegistrationsController < DeviseTokenAuth::RegistrationsController
         
           if @resource.save!
             #render json: {:new => 'succesfully registered'}
-            respond_to do |format|
+            render :json => { :message => I18n.t('successfull.deleted'), :status => 200}, :status => 200
+            #respond_to do |format|
 
-              format.json { render json: {:new => 'succesfully registered'}}
+             # format.json { render json: {:new => 'succesfully registered'}}
 
-             end
+             #end
           else
             render json: @resource.errors.full_messages.to_json
             respond_to do |format|
