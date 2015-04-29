@@ -21,7 +21,7 @@ class RegistrationsController < DeviseTokenAuth::RegistrationsController
             }
         
           if @resource.save!
-            r#ender json: {:new => 'succesfully registered'}
+            #render json: {:new => 'succesfully registered'}
             respond_to do |format|
 
               format.json { render json: {:new => 'succesfully registered'}}
