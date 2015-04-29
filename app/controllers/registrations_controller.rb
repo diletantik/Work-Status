@@ -1,5 +1,9 @@
-class RegistrationsController < Devise::RegistrationsController
+class RegistrationsController < DeviseTokenAuth::RegistrationsController
   before_filter :configure_permitted_parameters
+  
+  def create
+    super 
+  end
 
   protected
 
