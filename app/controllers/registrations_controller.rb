@@ -8,6 +8,6 @@ class RegistrationsController < DeviseTokenAuth::RegistrationsController
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up).push(:registration_id, :email, :password, :password_confirmation, :registration => [])
+    devise_parameter_sanitizer.for(:sign_up).push(:registration_id, :email, :password, :password_confirmation, {:registration => []})
   end
 end
