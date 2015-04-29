@@ -46,6 +46,9 @@ end
 ########## Added on development ######
  gem 'devise', "~> 3.4.1" 
  gem 'paperclip', github: 'thoughtbot/paperclip'
+ gem 'gcm'
+ gem 'devise_token_auth' # Token based authentication for Rails JSON APIs
+ gem 'omniauth' # required for devise_token_auth
 
 #####################################
 
