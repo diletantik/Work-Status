@@ -21,9 +21,18 @@ class RegistrationsController < DeviseTokenAuth::RegistrationsController
             }
         
           if @resource.save!
-            render json: {:new => 'succesfully registered'}
+            r#ender json: {:new => 'succesfully registered'}
+            respond_to do |format|
+
+              format.json { render json: {:new => 'succesfully registered'}}
+
+             end
           else
             render json: @resource.errors.full_messages.to_json
+            respond_to do |format|
+              format.json { render json: @resource.errors.full_messages }
+
+             end
           end
     end
 
