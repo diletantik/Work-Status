@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     scope :v1 do
       mount_devise_token_auth_for "User", at: 'auth', :controllers => { :registrations => "registrations" }
       get 'events', to: "events#index"
+      get 'users', to: "users#index"
     end
   end
   resources :events
