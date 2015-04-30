@@ -25,7 +25,6 @@ class RegistrationsController < DeviseTokenAuth::RegistrationsController
             #render :json => { :message => I18n.t('successfull.deleted'), :status => 200}, :status => 200
             #respond_to do |format|
             render :json => {:success => 'Yep', 
-                                              :token => @resource.tokens,
                                               :status => 200}, :status => 200
              # format.json { render json: {:new => 'succesfully registered'}}
 
