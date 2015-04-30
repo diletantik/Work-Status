@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :projects
+  resources :calendars
   devise_for :web_users
   namespace :api do
     scope :v1 do

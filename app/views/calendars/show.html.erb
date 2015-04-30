@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Day off:</strong>
+  <%= @calendar.day_off %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @calendar.date %>
+</p>
+
+<p>
+  <strong>Time start:</strong>
+  <%= @calendar.time_start %>
+</p>
+
+<p>
+  <strong>Time stop:</strong>
+  <%= @calendar.time_stop %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @calendar.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_calendar_path(@calendar) %> |
+<%= link_to 'Back', calendars_path %>
