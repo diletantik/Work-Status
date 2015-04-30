@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for "User", at: 'auth', :controllers => { :registrations => "registrations" }
       get 'events', to: "events#index"
       get 'users', to: "users#index"
-      get 'sign_in', to: "session#sign_in"
+      get 'sign_in', to: "sessions#sign_in"
     end
   end
   resources :events
