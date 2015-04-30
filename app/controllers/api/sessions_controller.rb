@@ -1,4 +1,4 @@
-class Api::UsersController < ApplicationController
+class Api::SessionsController < ApplicationController
   before_filter :authenticate
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   require 'gcm'
