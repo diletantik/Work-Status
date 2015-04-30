@@ -23,6 +23,10 @@ class Api::SessionsController < ApplicationController
     @user = User.find_by_email(params[:email])
     @user.valid_password?(params[:password])
     if @user.valid_password?(params[:password])
+      if @user.registration_id != params[:registration_id]
+        @user.registration_id = params[:registration_id]
+        @user.save
+      end
       render json: {:registration_id => @user.registration_id}
     else
       render json: {:message => "Wrong email or password"}
