@@ -1,11 +1,12 @@
 class Api::UsersController < ApplicationController
+  before_filter :authenticate
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   require 'gcm'
 
   # GET /events
   # GET /events.json
   def index
-    if current_user
+    if $current_user
       @users = User.all
       #respond_to do |format|
         #format.json { render :json => @events }
