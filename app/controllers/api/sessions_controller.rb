@@ -18,9 +18,11 @@ class Api::SessionsController < ApplicationController
   end
 
   def sign_in
-    @password = params[:password].encrypted_password
-    @user = User.where('email = ? AND password = ?', params[:eamil], @password).first
-    if @user
+   #@password = params[:password].encrypted_password
+    #@user = User.where('email = ? AND password = ?', params[:eamil], @password).first
+    @user = User.find_by_email(params[:email])
+    @user.valid_password?(params[:password])
+    if @user.valid_password?(params[:password])
       render json: {:registration_id => @user.registration_id}
     else
       render json: {:message => "Wrong email or password"}
