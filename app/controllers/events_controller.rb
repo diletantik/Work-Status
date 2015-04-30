@@ -30,7 +30,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
           gcm = GCM.new("AIzaSyDvtdYEIqM-aUioqWS0YZOTIQqrGshtuPM")
-        registration_ids= ["APA91bHn3hqi03_vzntd6hKARcFQj9k4tE9Xf7wLKWQIFqh8j8K9D8iRLpelrCRb0vtplDGRbkpl2_Wt5U7CNM8ZH-JRhOtEwkrr1kBJydqkDjkk9DFbK5CgmMvv9UPHEo5Y-rVc-gWHHGR5JciQaM-oHPSSsV7zCA"] # an array of one or more client registration IDs
+        registration_ids= User.all.pluck(:registration_id) # an array of one or more client registration IDs
         options = {data: {message: "HALLO MUTHERFUCKERS"}}
         response = gcm.send(registration_ids, options)
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
