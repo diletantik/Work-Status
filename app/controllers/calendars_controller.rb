@@ -25,7 +25,11 @@ class CalendarsController < ApplicationController
   # POST /calendars.json
   def create
     @calendar = Calendar.new(calendar_params)
-
+    if @calendar.day_off == true
+      @calendar.time_start = nil
+      @calendar.time_stop = nil
+      @calendar.date = nil
+    end
     respond_to do |format|
       if @calendar.save
         format.html { redirect_to @calendar, notice: 'Calendar was successfully created.' }

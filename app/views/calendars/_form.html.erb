@@ -15,23 +15,39 @@
     <%= f.label :day_off %><br>
     <%= f.check_box :day_off %>
   </div>
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.text_field :date %>
+
+  <div id = "date_area">
+    <input type="text" data-provide='datepicker' id="date_picker">
+
+    <div class="field">
+      <%= f.label :time_start %><br>
+      <%= f.time_select :time_start %>
+    </div>
+    <div class="field">
+      <%= f.label :time_stop %><br>
+      <%= f.time_select :time_stop %>
+    </div>
   </div>
+
   <div class="field">
-    <%= f.label :time_start %><br>
-    <%= f.time_select :time_start %>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
   </div>
-  <div class="field">
-    <%= f.label :time_stop %><br>
-    <%= f.time_select :time_stop %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
+
+  <%= hidden_field( :calendar, :date) %>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit id: "calendar_submit" %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+  $('#calendar_submit').click(function(){
+    var date = $('#date_picker').val()
+    $('[name="calendar[date]"]').val(date);
+  });
+
+  $('#calendar_day_off').change(function() {
+    $('#date_area').toggle(!this.checked);
+  });
+</script>
