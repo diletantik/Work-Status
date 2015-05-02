@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430195148) do
+ActiveRecord::Schema.define(version: 20150430201341) do
+
+  create_table "calendars", force: :cascade do |t|
+    t.boolean  "day_off"
+    t.string   "date"
+    t.time     "time_start"
+    t.time     "time_stop"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string   "entity_type"
+    t.integer  "entity_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +39,27 @@ ActiveRecord::Schema.define(version: 20150430195148) do
     t.datetime "stop_date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string   "entity_type"
+    t.integer  "entity_id"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

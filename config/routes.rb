@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+   
   resources :projects
   resources :calendars
   devise_for :web_users
@@ -12,8 +13,11 @@ Rails.application.routes.draw do
     end
   end
   resources :events
+ 
+
   devise_for :users
   
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

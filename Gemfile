@@ -50,5 +50,11 @@ end
  gem 'devise_token_auth' # Token based authentication for Rails JSON APIs
  gem 'omniauth' # required for devise_token_auth
 
+ #bootstrap
+ gem "therubyracer"
+ gem "less-rails" 
+ gem "twitter-bootstrap-rails"
+
+ gem 'bootstrap-datepicker-rails'
 #####################################
 
