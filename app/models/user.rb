@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  belongs_to :project
+  belongs_to :role
 end

@@ -15,21 +15,12 @@
 		  	<li><%= link_to "Projects", projects_path %></li>
 		  	<li><%= link_to "Calendars", calendars_path %></li>
 		  	<li><%= link_to "Events", events_path %></li>
-		
-
-		 
-		  <ul class="nav nav-pills navbar-right">
-			<% #if web_user_signed_in? %>
-			  <li><%= link_to "My Profile", edit_web_user_registration_path%> </li>
-			  <li id="right_margin"><%= link_to "Sign out", destroy_web_user_session_path, :method => :delete %> </li>
-			<% #else %>
-			  <li><%= link_to "Sign up", new_web_user_registration_path%> </li>
-			  <li id="right_margin"><%= link_to "Sign in", new_web_user_session_path%> </li>
-			<% #send %>
-			</ul>
+		 </ul>
 		</div>
 	</div>
-	
+	<%if current_user%>
+		aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 
+	<%end%>
 	<%= yield %>
 </div>
 

@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 
-   
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+  #get 'users/register', to: "users#new"
+
+  resources :users
+
   resources :projects
   resources :calendars
-  devise_for :web_users
   namespace :api do
     scope :v1 do
       mount_devise_token_auth_for "User", at: 'auth', :controllers => { :registrations => "registrations" }
@@ -15,7 +20,7 @@ Rails.application.routes.draw do
   resources :events
  
 
-  devise_for :users
+  #devise_for :users
   
 
   
