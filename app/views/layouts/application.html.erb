@@ -15,15 +15,25 @@
 		  	<li><%= link_to "Projects", projects_path %></li>
 		  	<li><%= link_to "Calendars", calendars_path %></li>
 		  	<li><%= link_to "Events", events_path %></li>
-		 </ul>
-		</div>
+		
+	
+
+	<ul class="nav nav-pills navbar-right">
+	<% if current_user %>
+		<li><%= current_user.first_name %></li>
+		<li><%= link_to "LogOut", :controller => :sessions, :action => :destroy %></li>
+	<% else %>
+		<li><%= link_to "Login", :controller => :sessions, :action => :create %></li>
+		<li id="right_margin"><%= link_to "Register", :controller => :users, :action => :new %></li>
+	<% end %>
+	</ul>
 	</div>
-	<%if current_user%>
-		aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 
-	<%end%>
+	</div>
 	<%= yield %>
 </div>
 
 
 </body>
 </html>
+
+

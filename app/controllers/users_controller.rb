@@ -43,8 +43,10 @@ class UsersController < ApplicationController
             #  format.json { render json: @resource.errors.full_messages }
 
             # end
+
           end
     end
+
 
   protected
 
