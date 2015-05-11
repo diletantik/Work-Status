@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day_off: false
+  date: MyString
+  time_start: 2015-04-30 22:59:45
+  time_stop: 2015-04-30 22:59:45
+  user_id: 1
+
+two:
+  day_off: false
+  date: MyString
+  time_start: 2015-04-30 22:59:45
+  time_stop: 2015-04-30 22:59:45
+  user_id: 1

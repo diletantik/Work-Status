@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+  
+  
+
+        
+        
+        <% @seven.each do |day| %>
+            <h5><%= day.first.date if day.first.present? %><h5>
+            <% day.each do |calendar| %>
+
+                <% if calendar.day_off %>
+                Missing
+                <%else%>
+                Present
+                <%end%>
+                <%= calendar.time_start %>
+                <%= calendar.time_stop %>
+                <%= calendar.description %>
+                <%= calendar.user.first_name%>
+                <%= calendar.user.last_name%>
+                <%= link_to 'Show', calendar %>
+                <%= link_to 'Edit', edit_calendar_path(calendar) %>
+                <%= link_to 'Destroy', calendar, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <br>
+
+            <%end%>
+        <%end%>
+
+
+
+
+<br>
+
+<%= link_to 'New Calendar', new_calendar_path %>

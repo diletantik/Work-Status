@@ -1,0 +1,75 @@
+<%= form_for(@calendar, :html => {:class => "form-horizontal"}) do |f| %>
+
+  <% if @calendar.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@calendar.errors.count, "error") %> prohibited this calendar from being saved:</h2>
+
+      <ul>
+      <% @calendar.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :day_off, class: 'col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label' %>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+      <div class="checkbox">
+        <label>
+          <%= f.check_box :day_off %>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+      <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Date</label>
+      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+        <input type="text" data-provide='datepicker' id="date_picker">
+      </div>
+    </div>
+
+  <div id = "date_area">
+  
+    <div class="form-group">
+      <%= f.label :time_start, class: 'col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label' %>
+      <%= f.time_select :time_start, class: 'btn-default btn-xs' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :time_stop, class: 'col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label' %>
+      <%= f.time_select :time_stop, class: 'btn-default btn-xs' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, class: 'col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label' %>
+    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+      <%= f.text_area :description %>
+    </div>
+  </div>
+
+  <%= hidden_field( :calendar, :date) %>
+  <%= hidden_field_tag :user_id, current_user.id %>
+
+
+  <div class="form-group">
+    <div class="col-lg-10 col-lg-offset-2">
+      <%= f.submit id: "calendar_submit", class: 'btn btn-primary' %>
+    </div>
+  </div>
+
+
+
+<% end %>
+
+<script type="text/javascript">
+  $('#calendar_submit').click(function(){
+    var date = $('#date_picker').val()
+    $('[name="calendar[date]"]').val(date);
+  });
+
+  $('#calendar_day_off').change(function() {
+    $('#date_area').toggle(!this.checked);
+  });
+</script>

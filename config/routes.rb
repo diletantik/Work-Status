@@ -1,15 +1,32 @@
 Rails.application.routes.draw do
+
+  resources :departments
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  get 'calendars/all' => "calendars#all"
+  #get 'users/register', to: "users#new"
+
+  resources :users
+
+  resources :projects
+  resources :calendars
   namespace :api do
     scope :v1 do
       mount_devise_token_auth_for "User", at: 'auth', :controllers => { :registrations => "registrations" }
       get 'events', to: "events#index"
       get 'users', to: "users#index"
       get 'sign_in', to: "sessions#sign_in"
+      get 'calendars', to: "calendar#index"
     end
   end
   resources :events
-  devise_for :users
+ 
+
+  #devise_for :users
   
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
