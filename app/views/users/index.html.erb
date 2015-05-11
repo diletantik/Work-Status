@@ -9,6 +9,7 @@
       <th>Name</th>
       <th>Surname</th>
       <th>Role</th>
+      <th>Avatar</th>
 
     </tr>
   </thead>
@@ -19,6 +20,9 @@
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
         <td><%= user.role_id %></td>
+          <td><% if current_user %>
+            <%= image_tag current_user.avatar.url(:thumb)%>
+          <% end %></td>
       </tr>
     <% end %>
   </tbody>

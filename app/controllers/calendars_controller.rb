@@ -68,14 +68,26 @@ class CalendarsController < ApplicationController
 
   def all
     @calendars = Calendar.all
-    @first_day = Time.now.strftime("%d-%m-%Y")
-    @second_day = (Time.now + 1.day).strftime("%d-%m-%Y")
-    @third_day = (Time.now + 2.day).strftime("%d-%m-%Y")
+
+    #@first_day = Time.now.strftime("%d-%m-%Y")
+    #@second_day = (Time.now + 1.day).strftime("%d-%m-%Y")
+    #@third_day = (Time.now + 2.day).strftime("%d-%m-%Y")
    
-    @first = Calendar.where("date = ?", @first_day)
-    @second = Calendar.where("date = ?", @second_day)
-    @third = Calendar.where("date = ?", @third_day)
-    @days_array = [@first, @second, @third]
+    #@first = Calendar.where("date = ?", @first_day)
+    #@second = Calendar.where("date = ?", @second_day)
+    #@third = Calendar.where("date = ?", @third_day)
+    #@days_array = [@first, @second, @third]
+
+    @days = []
+    (0..6).each do |i|
+      @days << (Time.now + i.day).strftime("%d-%m-%Y")
+    end
+
+    @seven = []
+    (0..6).each do |b|
+      @seven << Calendar.where("date = ?", @days[b])
+    end
+
   end
 
   private
