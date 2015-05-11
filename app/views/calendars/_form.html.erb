@@ -23,15 +23,15 @@
     </div>
   </div>
 
-  <div id = "date_area">
-
-    <div class="form-group">
+  <div class="form-group">
       <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Date</label>
       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
         <input type="text" data-provide='datepicker' id="date_picker">
       </div>
     </div>
 
+  <div id = "date_area">
+  
     <div class="form-group">
       <%= f.label :time_start, class: 'col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label' %>
       <%= f.time_select :time_start, class: 'btn-default btn-xs' %>
@@ -50,6 +50,8 @@
   </div>
 
   <%= hidden_field( :calendar, :date) %>
+  <%= hidden_field_tag :user_id, current_user.id %>
+
 
   <div class="form-group">
     <div class="col-lg-10 col-lg-offset-2">

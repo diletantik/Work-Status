@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  resources :departments
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+
+  get 'calendars/all' => "calendars#all"
   #get 'users/register', to: "users#new"
 
   resources :users

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   belongs_to :project
   belongs_to :role
+  belongs_to :department
+  has_many :calendars
 
   validates :first_name, presence: true
   validates :last_name, presence: true

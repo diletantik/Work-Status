@@ -5,6 +5,7 @@ class CalendarsController < ApplicationController
   # GET /calendars.json
   def index
     @calendars = Calendar.all
+
   end
 
   # GET /calendars/1
@@ -28,8 +29,8 @@ class CalendarsController < ApplicationController
     if @calendar.day_off == true
       @calendar.time_start = nil
       @calendar.time_stop = nil
-      @calendar.date = nil
     end
+    @calendar.user_id = params[:user_id]
     respond_to do |format|
       if @calendar.save
         format.html { redirect_to @calendar, notice: 'Calendar was successfully created.' }
@@ -63,6 +64,18 @@ class CalendarsController < ApplicationController
       format.html { redirect_to calendars_url, notice: 'Calendar was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def all
+    @calendars = Calendar.all
+    @first_day = Time.now.strftime("%d-%m-%Y")
+    @second_day = (Time.now + 1.day).strftime("%d-%m-%Y")
+    @third_day = (Time.now + 2.day).strftime("%d-%m-%Y")
+   
+    @first = Calendar.where("date = ?", @first_day)
+    @second = Calendar.where("date = ?", @second_day)
+    @third = Calendar.where("date = ?", @third_day)
+    @days_array = [@first, @second, @third]
   end
 
   private
