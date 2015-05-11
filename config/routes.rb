@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       get 'events', to: "events#index"
       get 'users', to: "users#index"
       get 'sign_in', to: "sessions#sign_in"
+      get 'calendars', to: "calendar#index"
     end
   end
   resources :events
