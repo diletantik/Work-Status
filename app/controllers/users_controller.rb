@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     @resource = User.new
   end
 
-   def index
+  def index
     @users = User.all
   end
 

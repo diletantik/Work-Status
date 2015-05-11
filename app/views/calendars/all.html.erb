@@ -2,49 +2,32 @@
   
   
 
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Day off</th>
-        <th>Time start</th>
-        <th>Time stop</th>
-        <th>Description</th>
-        <th>User Name</th>
-        <th>User Surname</th>
-        <th>User Photo </th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody> 
         
         
         <% @seven.each do |day| %>
-
+            <h5><%= day.first.date if day.first.present? %><h5>
             <% day.each do |calendar| %>
-              <tr>
-                <td><%= calendar.date%></td>
-                <td><%= calendar.day_off %></td>
-                
-                <td><%= calendar.time_start %></td>
-                <td><%= calendar.time_stop %></td>
-                <td><%= calendar.description %></td>
-                <td><%= calendar.user.first_name%></td>
-                <td><%= calendar.user.last_name%></td>
-                <td><% if current_user %>
-                    <%= image_tag current_user.avatar.url(:thumb)%>
-                    <% end %></td>
-                <td><%= link_to 'Show', calendar %></td>
-                <td><%= link_to 'Edit', edit_calendar_path(calendar) %></td>
-                <td><%= link_to 'Destroy', calendar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
+
+                <% if calendar.day_off %>
+                Missing
+                <%else%>
+                Present
+                <%end%>
+                <%= calendar.time_start %>
+                <%= calendar.time_stop %>
+                <%= calendar.description %>
+                <%= calendar.user.first_name%>
+                <%= calendar.user.last_name%>
+                <%= link_to 'Show', calendar %>
+                <%= link_to 'Edit', edit_calendar_path(calendar) %>
+                <%= link_to 'Destroy', calendar, method: :delete, data: { confirm: 'Are you sure?' } %>
+                <br>
+
             <%end%>
         <%end%>
 
 
-    </tbody>
-  </table>
+
 
 <br>
 

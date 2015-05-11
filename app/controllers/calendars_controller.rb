@@ -88,6 +88,7 @@ class CalendarsController < ApplicationController
       @seven << Calendar.where("date = ?", @days[b])
     end
 
+    
   end
 
   private
