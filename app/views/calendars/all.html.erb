@@ -1,54 +1,58 @@
 <p id="notice"><%= notice %></p>
-  
-  
+  <% @seven.each do |day| %>
+    <section>
+    <% if day.first.present?%>
+      <button class="calendar_date"><h3><%= day.first.date %></h3></button>
+    <% end %>
+    
+    <div class="content">
+    <% day.each do |calendar| %>
+      <h4><%= link_to "#{calendar.user.full_name}", calendar %></h4>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Day Off</th>
+              <th>Time Start</th>
+              <th>Time Stop</th>
+            </tr>
+          </thead>   
+          <tbody>
+            <tr>
+              <td><%= calendar.user.status_id%></td>
+                <% if calendar.day_off %>
+                  <td>Missing</td>
+                <%else%>
+                  <td>Present</td>
+                <%end%>
+              <td><%= calendar.time_start %></td>
+              <td><%= calendar.time_stop %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    
+    <%end%>
+    
+    </section>
+  <%end%>
 
-        
-        
-        <% @seven.each do |day| %>
-
-            <%= day.first.date if day.first.present? %>
-
-            <% day.each do |calendar| %>
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Status</th>
-                        <th>Time Start</th>
-                        <th>Time Stop</th>
-                        <th>Description</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Show</th>
-                        <th>Delete</th>
-                        <th>Destroy</th>
-                    </tr>
-                 </thead>
-
-            
-                 <tbody>
-                    <tr>
-                        <% if calendar.day_off %>
-                            <td>Missing</td>
-                        <%else%>
-                            <td>Present</td>
-                        <%end%>
-                        <td><%= calendar.time_start %></td>
-                        <td><%= calendar.time_stop %></td>
-                        <td><%= calendar.description %></td>
-                        <td><%= calendar.user.first_name%></td>
-                        <td><%= calendar.user.last_name%></td>
-                        <td><%= link_to 'Show', calendar %></td>
-                        <td><%= link_to 'Edit', edit_calendar_path(calendar) %></td>
-                        <td><%= link_to 'Destroy', calendar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                    </tr>
-                </tbody>
-            </table>
-            <%end%>
-        <%end%>
-
-
-
-
-<br>
 
 <%= link_to 'New Calendar', new_calendar_path %>
+
+
+<script type="text/javascript">
+  
+  $('.calendar_date').click(function() {
+    $(this).closest('section').find('.content').slideToggle();
+  });
+
+</script>
+
+<style type="text/css">
+  .content{
+    display: none;
+    overflow: hidden;
+}
+
+</style>

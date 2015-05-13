@@ -26,7 +26,7 @@
   <div class="form-group">
       <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Date</label>
       <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-        <input type="text" data-provide='datepicker' id="date_picker">
+        <input type="text" class='datepicker' >
       </div>
     </div>
 
@@ -65,11 +65,14 @@
 
 <script type="text/javascript">
   $('#calendar_submit').click(function(){
-    var date = $('#date_picker').val()
+    var date = $('.datepicker').val()
     $('[name="calendar[date]"]').val(date);
   });
 
   $('#calendar_day_off').change(function() {
     $('#date_area').toggle(!this.checked);
   });
+
+  $('.datepicker').datepicker();
+
 </script>
