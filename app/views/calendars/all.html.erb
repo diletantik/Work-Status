@@ -5,24 +5,41 @@
         
         
         <% @seven.each do |day| %>
-            <h5><%= day.first.date if day.first.present? %><h5>
+            <%= day.first.date if day.first.present? %>
             <% day.each do |calendar| %>
 
-                <% if calendar.day_off %>
-                Missing
-                <%else%>
-                Present
-                <%end%>
-                <%= calendar.time_start %>
-                <%= calendar.time_stop %>
-                <%= calendar.description %>
-                <%= calendar.user.first_name%>
-                <%= calendar.user.last_name%>
-                <%= link_to 'Show', calendar %>
-                <%= link_to 'Edit', edit_calendar_path(calendar) %>
-                <%= link_to 'Destroy', calendar, method: :delete, data: { confirm: 'Are you sure?' } %>
-                <br>
-
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Time Start</th>
+                        <th>Time Stop</th>
+                        <th>Description</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Show</th>
+                        <th>Delete</th>
+                        <th>Destroy</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <tr>
+                        <% if calendar.day_off %>
+                            <td>Missing</td>
+                        <%else%>
+                            <td>Present</td>
+                        <%end%>
+                        <td><%= calendar.time_start %></td>
+                        <td><%= calendar.time_stop %></td>
+                        <td><%= calendar.description %></td>
+                        <td><%= calendar.user.first_name%></td>
+                        <td><%= calendar.user.last_name%></td>
+                        <td><%= link_to 'Show', calendar %></td>
+                        <td><%= link_to 'Edit', edit_calendar_path(calendar) %></td>
+                        <td><%= link_to 'Destroy', calendar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    </tr>
+                </tbody>
+            </table>
             <%end%>
         <%end%>
 
