@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<% if current_user.calendars.count > 0 %>
+
   <h1>Listing Calendars</h1>
 
   <table>
@@ -34,9 +34,7 @@
       
     </tbody>
   </table>
-<% else %>
-      <h5>No Calendars for this User</h5>
-<% end %>
+
 <br>
 
 <%= link_to 'New Calendar', new_calendar_path %>
