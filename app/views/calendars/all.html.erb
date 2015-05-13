@@ -1,9 +1,11 @@
 <p id="notice"><%= notice %></p>
   <% @seven.each do |day| %>
+    <section>
     <% if day.first.present?%>
-      <h3><%= day.first.date %></h3>
+      <button class="calendar_date"><h3><%= day.first.date %></h3></button>
     <% end %>
-
+    
+    <div class="content">
     <% day.each do |calendar| %>
       <h4><%= link_to "#{calendar.user.full_name}", calendar %></h4>
         <table class="table table-bordered">
@@ -28,7 +30,29 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    
     <%end%>
+    
+    </section>
   <%end%>
 
+
 <%= link_to 'New Calendar', new_calendar_path %>
+
+
+<script type="text/javascript">
+  
+  $('.calendar_date').click(function() {
+    $(this).closest('section').find('.content').slideToggle();
+  });
+
+</script>
+
+<style type="text/css">
+  .content{
+    display: none;
+    overflow: hidden;
+}
+
+</style>

@@ -5,7 +5,6 @@ class CalendarsController < ApplicationController
   # GET /calendars.json
   def index
     @calendars = Calendar.all
-
   end
 
   # GET /calendars/1
@@ -87,7 +86,6 @@ class CalendarsController < ApplicationController
     (0..6).each do |b|
       @seven << Calendar.where("date = ?", @days[b])
     end
-
     
   end
 

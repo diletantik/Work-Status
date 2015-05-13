@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       get 'sign_in', to: "sessions#sign_in"
       get 'calendars', to: "calendar#index"
       get 'change_status', to: "users#change_status"
+      post 'update', to: "users#update"
     end
   end
   resources :events

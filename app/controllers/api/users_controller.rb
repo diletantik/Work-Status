@@ -54,15 +54,28 @@ class Api::UsersController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
+    
+      if @user.update(user_params)
+       if @user.save!
+            #render json: {:new => 'succesfully registered'}
+            #render :json => { :message => I18n.t('successfull.deleted'), :status => 200}, :status => 200
+            #respond_to do |format|
+            render :json => {:success => 'Yep', 
+                                              :status => 200}, :status => 200
+             # format.json { render json: {:new => 'succesfully registered'}}
+
+             #end
+          else
+            render :json => {:error => @user.errors.full_messages, 
+                                              :status => 422}, :status => 422
+            
+            #render json: @resource.errors.full_messages.to_json
+            #respond_to do |format|
+            #  format.json { render json: @resource.errors.full_messages }
+
+            # end
+          end
+
   end
 
   # DELETE /events/1
@@ -94,7 +107,7 @@ class Api::UsersController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:name, :description, :user_id, :start_date, :stop_date, :status_id)
+    def user_params
+      params.require(:user).permit(:first_name, :last_name, :phone, :status_id, :skype, :role_id, :department_id, :avatar)
     end
 end
