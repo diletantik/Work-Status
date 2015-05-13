@@ -75,6 +75,18 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def change_status
+    if $current_user
+      if $current_user.status_id != params[:status_id]
+        $current_user.status_id = params[:status_id]
+        $current_user.save
+      end
+      render json: {:status_id => $current_user.status_id}
+    else
+      render json: {:message => "U dont have permission to look this page"}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -83,6 +95,6 @@ class Api::UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :description, :user_id, :start_date, :stop_date)
+      params.require(:event).permit(:name, :description, :user_id, :start_date, :stop_date, :status_id)
     end
 end
