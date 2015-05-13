@@ -5,9 +5,10 @@
         
         
         <% @seven.each do |day| %>
-            <%= day.first.date if day.first.present? %>
-            <% day.each do |calendar| %>
 
+            <%= day.first.date if day.first.present? %>
+
+            <% day.each do |calendar| %>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -22,6 +23,8 @@
                         <th>Destroy</th>
                     </tr>
                  </thead>
+
+            
                  <tbody>
                     <tr>
                         <% if calendar.day_off %>
