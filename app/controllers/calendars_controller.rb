@@ -80,7 +80,7 @@ class CalendarsController < ApplicationController
 
     @days = []
     (0..6).each do |i|
-      @days << (Time.now + i.day).strftime("%d-%m-%Y")
+      @days << (Time.now + i.day).strftime("%m/%d/%Y")
     end
 
     @seven = []
