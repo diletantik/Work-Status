@@ -24,20 +24,25 @@ class CalendarsController < ApplicationController
   # POST /calendars
   # POST /calendars.json
   def create
-    @calendar = Calendar.new(calendar_params)
-    if @calendar.day_off == true
-      @calendar.time_start = nil
-      @calendar.time_stop = nil
-    end
-    @calendar.user_id = params[:user_id]
-    respond_to do |format|
-      if @calendar.save
-        format.html { redirect_to @calendar, notice: 'Calendar was successfully created.' }
-        format.json { render :show, status: :created, location: @calendar }
-      else
-        format.html { render :new }
-        format.json { render json: @calendar.errors, status: :unprocessable_entity }
+    @one_day_calendar = Calendar.where("date = ?", calendar_params[:date])
+    if !@one_day_calendar.present?
+      @calendar = Calendar.new(calendar_params)
+      if @calendar.day_off == true
+        @calendar.time_start = nil
+        @calendar.time_stop = nil
       end
+      @calendar.user_id = params[:user_id]
+      respond_to do |format|
+        if @calendar.save
+          format.html { redirect_to @calendar, notice: 'Calendar was successfully created.' }
+          format.json { render :show, status: :created, location: @calendar }
+        else
+          format.html { render :new }
+          format.json { render json: @calendar.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      redirect_to :back, :flash => { :success => "Calendar with this date already exists" }
     end
   end
 

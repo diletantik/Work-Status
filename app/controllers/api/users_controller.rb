@@ -93,11 +93,13 @@ class Api::UsersController < ApplicationController
         $current_user.status_id = params[:status_id]
         $current_user.save
       end
-      render json: {:status_id => $current_user.status_id}
+      render json: $current_user
+
     else
       render json: {:message => "U dont have permission to look this page"}
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
