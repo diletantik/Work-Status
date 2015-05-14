@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   def authenticate
     if (!current_user)&&(params[:registration_id].present?)
       $current_user = User.where('registration_id = ?', params[:registration_id]).first
-      render json: $current_user
+      #render json: $current_user
     end
 
   end
