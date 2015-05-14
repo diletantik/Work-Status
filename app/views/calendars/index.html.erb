@@ -2,7 +2,7 @@
 
   <h1>Listing Calendars</h1>
 
-  <table>
+   <table class="table table-bordered">
     <thead>
       <tr>
         <th>Day off</th>
@@ -24,7 +24,7 @@
             <td><%= calendar.time_start %></td>
             <td><%= calendar.time_stop %></td>
             <td><%= calendar.description %></td>
-            <td><%= calendar.user_id %></td>
+            <td><%= calendar.user.first_name %></td>
             <td><%= link_to 'Show', calendar %></td>
             <td><%= link_to 'Edit', edit_calendar_path(calendar) %></td>
             <td><%= link_to 'Destroy', calendar, method: :delete, data: { confirm: 'Are you sure?' } %></td>
