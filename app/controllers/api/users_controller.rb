@@ -89,13 +89,13 @@ class Api::UsersController < ApplicationController
 
   def change_status
       @current_user = User.where("registration_id = ?", params[:registration_id]).first
-      if @current_user.status_id != params[:status_id]
+     # if @current_user.status_id != params[:status_id]
         @current_user.status_id = params[:status_id]
         @current_user.save
         render json: @current_user
-      else
-        render json: {:message => "U dont have permission to look this page"}
-      end
+      #else
+      #  render json: {:message => "U dont have permission to look this page"}
+      #end
   end
 
 
@@ -107,6 +107,6 @@ class Api::UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :phone, :status_id, :skype, :role_id, :department_id, :avatar)
+      params.require(:user).permit(:first_name, :last_name, :phone, :status_id, :skype, :role_id, :department_id, :avatar, :registration_id)
     end
 end
