@@ -89,8 +89,11 @@ class Api::UsersController < ApplicationController
 
   def change_status
       @current_user = User.where("registration_id = ?", params[:registration_id]).first
+      puts @current_user
+      puts @status_id
      # if @current_user.status_id != params[:status_id]
         @current_user.status_id = params[:status_id]
+        puts @current_user.status_id
         @current_user.save
         render json: @current_user
       #else
