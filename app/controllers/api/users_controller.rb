@@ -88,12 +88,12 @@ class Api::UsersController < ApplicationController
   end
 
   def change_status
-    if $current_user
-      if $current_user.status_id != params[:status_id]
-        $current_user.status_id = params[:status_id]
-        $current_user.save
+      @current_user = User.where("registration_id = ?", params[:registration_id]).first
+      if @current_user.status_id != params[:status_id]
+        @current_user.status_id = params[:status_id]
+        @current_user.save
       end
-      render json: $current_user
+      render json: @current_user
 
     else
       render json: {:message => "U dont have permission to look this page"}
