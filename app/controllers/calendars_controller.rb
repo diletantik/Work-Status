@@ -42,7 +42,7 @@ class CalendarsController < ApplicationController
         end
       end
     else
-      redirect_to :back, :flash => { :success => "Calendar with this date already exists" }
+      redirect_to :back, error: "An error message for the user"
     end
   end
 
