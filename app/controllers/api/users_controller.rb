@@ -54,7 +54,6 @@ class Api::UsersController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    
       if @user.update(user_params)
        if @user.save!
             #render json: {:new => 'succesfully registered'}
@@ -75,7 +74,7 @@ class Api::UsersController < ApplicationController
 
             # end
           end
-
+        end
   end
 
   # DELETE /events/1
