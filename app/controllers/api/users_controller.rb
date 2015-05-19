@@ -23,8 +23,9 @@ class Api::UsersController < ApplicationController
   end
 
   # GET /events/new
-  def new
-    @event = Event.new
+  def info
+    @user = $current_user
+    render json: @user
   end
 
   # GET /events/1/edit

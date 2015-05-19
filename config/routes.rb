@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       get 'sign_in', to: "sessions#sign_in"
       get 'calendars', to: "calendar#index"
       post 'change_status', to: "users#change_status"
-      get 'current_user' , to: "application#authenticate"
+      get 'current_user' , to: "users#info"
       post 'update', to: "users#update"
     end
   end
