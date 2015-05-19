@@ -94,8 +94,8 @@ class Api::UsersController < ApplicationController
       # if @current_user.status_id != params[:status_id]
         #@current_user.status_id = params[:status_id]
         puts @current_user.status_id
-        @current_user.save
-        render json: @current_user
+        #@current_user.save
+        render json: @current_user.status_id
       #else
       #  render json: {:message => "U dont have permission to look this page"}
       #end
