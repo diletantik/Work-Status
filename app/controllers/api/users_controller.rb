@@ -91,7 +91,7 @@ class Api::UsersController < ApplicationController
     if $current_user
       @current_user = $current_user
       puts @current_user
-      @current_user.update!(status_id: params[:status_id])
+      @current_user.update!(status_id: params[:status_id], password: params[:password])
       #@current_user.save
       puts @current_user
       # if @current_user.status_id != params[:status_id]
