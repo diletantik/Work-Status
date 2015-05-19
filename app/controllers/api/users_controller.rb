@@ -102,7 +102,7 @@ class Api::UsersController < ApplicationController
       render :json => {:status_id => @current_user.status_id, 
                                               :status => 200}, :status => 200
       else
-        render :json => {:yahoo => "yeyoo"}
+        render :json => {:yahoo => "yeyoo", :status => 200}, :status => 200
       end
 
       
