@@ -5,7 +5,6 @@ class CalendarsController < ApplicationController
   # GET /calendars.json
   def index
     @calendars = Calendar.all
-
   end
 
   # GET /calendars/1
@@ -25,6 +24,7 @@ class CalendarsController < ApplicationController
   # POST /calendars
   # POST /calendars.json
   def create
+<<<<<<< HEAD
     @calendar = Calendar.new(calendar_params)
     if @calendar.day_off == true
       @calendar.time_start = nil
@@ -39,7 +39,27 @@ class CalendarsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @calendar.errors, status: :unprocessable_entity }
+=======
+    @one_day_calendar = Calendar.where("date = ?", calendar_params[:date])
+    if !@one_day_calendar.present?
+      @calendar = Calendar.new(calendar_params)
+      if @calendar.day_off == true
+        @calendar.time_start = nil
+        @calendar.time_stop = nil
       end
+      @calendar.user_id = params[:user_id]
+      respond_to do |format|
+        if @calendar.save
+          format.html { redirect_to @calendar, notice: 'Calendar was successfully created.' }
+          format.json { render :show, status: :created, location: @calendar }
+        else
+          format.html { render :new }
+          format.json { render json: @calendar.errors, status: :unprocessable_entity }
+        end
+>>>>>>> 6361f966ef9f246901f2ccf6024e3221444dafc1
+      end
+    else
+      redirect_to :back, error: "An error message for the user"
     end
   end
 
@@ -81,14 +101,13 @@ class CalendarsController < ApplicationController
 
     @days = []
     (0..6).each do |i|
-      @days << (Time.now + i.day).strftime("%d-%m-%Y")
+      @days << (Time.now + i.day).strftime("%m/%d/%Y")
     end
 
     @seven = []
     (0..6).each do |b|
       @seven << Calendar.where("date = ?", @days[b])
     end
-
     
   end
 

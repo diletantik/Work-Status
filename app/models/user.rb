@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   belongs_to :role
   belongs_to :department
   has_many :calendars
+  has_one :status
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -21,6 +22,10 @@ class User < ActiveRecord::Base
   #validates_uniqueness_of :email, :case_sensitive => false, format: { with: /\A\w+@\w+\.[a-z]+\z/ }
   
   #has_secure_password
+  
+  def full_name
+    first_name.to_s + " " + last_name.to_s
+  end
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :avatar, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]

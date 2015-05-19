@@ -1,34 +1,61 @@
 <p id="notice"><%= notice %></p>
-  
-  
-
+  <% @seven.each do |day| %>
+    <div class="calendar_wrapper">
+      <% if day.first.present?%>
+        <% @current_day = day.first.date.to_s%>
+        <button class="calendar_date"><h3><%= @current_day[3..4] %> <%= Date::MONTHNAMES.dup[@current_day[0..1].to_i] %></h3></button>
+      <% end %>
+      
+      <div class="content"><br>
+        <table class="table table-bordered">
         
+        <% if day.first.present?%>
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Status</th>
+              <th>Day Off</th>
+              <th>Time Start</th>
+              <th>Time Stop</th>
+            </tr>
+          </thead>
+        <% end %>
         
-        <% @seven.each do |day| %>
-            <h5><%= day.first.date if day.first.present? %><h5>
-            <% day.each do |calendar| %>
+        <% day.each do |calendar| %>
 
-                <% if calendar.day_off %>
-                Missing
-                <%else%>
-                Present
-                <%end%>
-                <%= calendar.time_start %>
-                <%= calendar.time_stop %>
-                <%= calendar.description %>
-                <%= calendar.user.first_name%>
-                <%= calendar.user.last_name%>
-                <%= link_to 'Show', calendar %>
-                <%= link_to 'Edit', edit_calendar_path(calendar) %>
-                <%= link_to 'Destroy', calendar, method: :delete, data: { confirm: 'Are you sure?' } %>
-                <br>
-
-            <%end%>
+          <tbody>
+            <tr>
+              <td><%= link_to "#{calendar.user.full_name}", calendar %></td>
+              <td><%= calendar.user.status_id%></td>
+              <% if calendar.day_off %>
+                <td>Missing</td>
+              <% else %>
+                <td>Present</td>
+              <% end %>
+              <td><%= calendar.time_start %></td>
+              <td><%= calendar.time_stop %></td>
+            </tr>
+          </tbody>
         <%end%>
+        
+        </table>
+      </div>
+    </div>
+  <%end%>
 
+<script type="text/javascript">
 
+ $('.calendar_date').click(function() {
+   $(this).closest('.calendar_wrapper').find('.content').slideToggle();
+ });
 
+</script>
 
-<br>
+<style type="text/css">
+  
+  .content{ 
+    display: none;
+    overflow: hidden; 
+  }
 
-<%= link_to 'New Calendar', new_calendar_path %>
+</style>
