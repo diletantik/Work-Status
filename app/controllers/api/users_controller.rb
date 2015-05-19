@@ -88,6 +88,7 @@ class Api::UsersController < ApplicationController
   end
 
   def change_status
+    aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     if $current_user
       @current_user = $current_user
       puts @current_user
