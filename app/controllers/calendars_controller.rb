@@ -24,6 +24,22 @@ class CalendarsController < ApplicationController
   # POST /calendars
   # POST /calendars.json
   def create
+<<<<<<< HEAD
+    @calendar = Calendar.new(calendar_params)
+    if @calendar.day_off == true
+      @calendar.time_start = nil
+      @calendar.time_stop = nil
+    end
+    @calendar.date = params[:calendar][:date].to_date
+    @calendar.user_id = params[:user_id]
+    respond_to do |format|
+      if @calendar.save
+        format.html { redirect_to @calendar, notice: 'Calendar was successfully created.' }
+        format.json { render :show, status: :created, location: @calendar }
+      else
+        format.html { render :new }
+        format.json { render json: @calendar.errors, status: :unprocessable_entity }
+=======
     @one_day_calendar = Calendar.where("date = ?", calendar_params[:date])
     if !@one_day_calendar.present?
       @calendar = Calendar.new(calendar_params)
@@ -40,6 +56,7 @@ class CalendarsController < ApplicationController
           format.html { render :new }
           format.json { render json: @calendar.errors, status: :unprocessable_entity }
         end
+>>>>>>> 6361f966ef9f246901f2ccf6024e3221444dafc1
       end
     else
       redirect_to :back, error: "An error message for the user"

@@ -89,13 +89,13 @@ class Api::UsersController < ApplicationController
 
   def change_status
       @current_user = User.where("registration_id = ?", params[:registration_id]).first
-      @current_user.update(status_id: params[:status_id])
+      @current_user.update!(status_id: params[:status_id])
       puts @current_user
       # if @current_user.status_id != params[:status_id]
         #@current_user.status_id = params[:status_id]
         puts @current_user.status_id
-        @current_user.save
-        render json: @current_user
+        #@current_user.save
+        render json: @current_user.status_id
       #else
       #  render json: {:message => "U dont have permission to look this page"}
       #end
