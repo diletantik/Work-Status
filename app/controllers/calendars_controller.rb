@@ -30,6 +30,7 @@ class CalendarsController < ApplicationController
       @calendar.time_start = nil
       @calendar.time_stop = nil
     end
+    @calendar.date = params[:calendar][:date].to_date
     @calendar.user_id = params[:user_id]
     respond_to do |format|
       if @calendar.save
