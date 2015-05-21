@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       post 'change_status', to: "users#change_status"
       get 'current_user' , to: "users#info"
       post 'update', to: "users#update"
+      post 'change_photo', to: "users#change_photo"
     end
   end
   resources :events

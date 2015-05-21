@@ -34,23 +34,6 @@ class Api::UsersController < ApplicationController
 
   # POST /events
   # POST /events.json
-  def create
-    @event = Event.new(event_params)
-
-    respond_to do |format|
-      if @event.save
-          gcm = GCM.new("AIzaSyDvtdYEIqM-aUioqWS0YZOTIQqrGshtuPM")
-        registration_ids= ["APA91bHn3hqi03_vzntd6hKARcFQj9k4tE9Xf7wLKWQIFqh8j8K9D8iRLpelrCRb0vtplDGRbkpl2_Wt5U7CNM8ZH-JRhOtEwkrr1kBJydqkDjkk9DFbK5CgmMvv9UPHEo5Y-rVc-gWHHGR5JciQaM-oHPSSsV7zCA"] # an array of one or more client registration IDs
-        options = {data: {message: "HALLO MUTHERFUCKERS"}}
-        response = gcm.send(registration_ids, options)
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
@@ -110,6 +93,16 @@ class Api::UsersController < ApplicationController
       #else
       #  render json: {:message => "U dont have permission to look this page"}
       #end
+  end
+  
+  def change_photo
+    @user = $current_user
+    if params[:image].present?
+      image = Paperclip.io_adapters.for(params[:image]) 
+      image.original_filename = params[:image_name]
+      @user.update!(avatar: image, password: params[:password])
+      render :json => {:user_avatar => @user.avatar.url, :status => 200}, :status => 200
+    end
   end
 
 
