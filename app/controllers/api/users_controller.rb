@@ -103,7 +103,7 @@ class Api::UsersController < ApplicationController
       @user.update!(avatar: image, password: params[:password])
       render :json => {:user_avatar => @user.avatar.url, :status => 200}, :status => 200
     else
-      render 
+      render :json => {:fail => "dont send me this shit again", :status => 200}, :status => 200
     end
   end
 
