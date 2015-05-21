@@ -103,7 +103,7 @@ class Api::UsersController < ApplicationController
   def change_photo
     @user = $current_user
     if params[:base64].present?
-      image = Paperclip.io_adapters.for(params[:image]) 
+      image = Paperclip.io_adapters.for(params[:base64]) 
       image.original_filename = params[:image_name]
       @user.update!(avatar: image, password: params[:password])
       render :json => {:user_avatar => @user.avatar.url, :status => 200}, :status => 200
