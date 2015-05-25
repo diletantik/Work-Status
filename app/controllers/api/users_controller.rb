@@ -85,10 +85,7 @@ class Api::UsersController < ApplicationController
         #render json: @current_user.status_id
       #render :json => {:status_id => @current_user.status_id, 
                                              # :status => 200}, :status => 200
-      
-      respond_to do |format|
         render :json => @current_user.to_json(:only => [:first_name,:last_name], :methods => [:avatar_url])
-      end
       
       else
         render :json => {:yahoo => "yeyoo", :status => 200}, :status => 200
