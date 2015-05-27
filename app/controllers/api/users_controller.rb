@@ -115,7 +115,7 @@ class Api::UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:user][:registration_id])
+      @user = User.where(params[:user][:registration_id]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
