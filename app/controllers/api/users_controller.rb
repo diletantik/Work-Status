@@ -38,6 +38,7 @@ class Api::UsersController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
+    @user = User.find(params[:user][:registration_id])
       if @user.update(user_params)
        if @user.save!
             #render json: {:new => 'succesfully registered'}
