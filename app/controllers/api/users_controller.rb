@@ -40,7 +40,7 @@ class Api::UsersController < ApplicationController
   def update
     #@user = User.find(params[:user][:registration_id])
 
-      if @user.update(user_params)
+      if @user.update!(first_name: params[:user][:first_name], last_name: params[:user][:last_name], registration_id: params[:user][:registration_id].to_i, phone: params[:user][:phone], role_id: params[:user][:role_id].to_i, email: params[:user][:email], department_id: params[:user][:department_id].to_i, status_id: params[:user][:status_id].to.i, avatar: params[:user][:avatar], skype: params[:user][:skype])
        if @user.save!
             #render json: {:new => 'succesfully registered'}
             #render :json => { :message => I18n.t('successfull.deleted'), :status => 200}, :status => 200
