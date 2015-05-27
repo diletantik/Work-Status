@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
   before_filter :authenticate
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
   require 'gcm'
 
   # GET /events
