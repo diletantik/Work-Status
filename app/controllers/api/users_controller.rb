@@ -38,7 +38,8 @@ class Api::UsersController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    @user = User.find(params[:user][:registration_id])
+    #@user = User.find(params[:user][:registration_id])
+
       if @user.update(user_params)
        if @user.save!
             #render json: {:new => 'succesfully registered'}
@@ -113,8 +114,8 @@ class Api::UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
+    def set_user
+      @user = User.find(params[:user][:registration_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
