@@ -40,7 +40,7 @@ class Api::UsersController < ApplicationController
   def update
     #@user = User.find(params[:user][:registration_id])
 
-      if @user.update(user_params)
+      @user.update(user_params)
        if @user.save!
             #render json: {:new => 'succesfully registered'}
             #render :json => { :message => I18n.t('successfull.deleted'), :status => 200}, :status => 200
@@ -52,7 +52,7 @@ class Api::UsersController < ApplicationController
              #end
           else
             render :json => {:error => @user.errors.full_messages, 
-                                              :status => 422}, :status => 422
+                                              :status => 200}, :status => 200
             
             #render json: @resource.errors.full_messages.to_json
             #respond_to do |format|
@@ -60,7 +60,6 @@ class Api::UsersController < ApplicationController
 
             # end
           end
-        end
   end
 
   # DELETE /events/1
